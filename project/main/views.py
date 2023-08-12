@@ -5,7 +5,7 @@ from .models import *
 from .serializers import *
 
 def home(request):
-    pass
+    return render(request, 'index.html')
 def download(request, uid):
     pass
 
