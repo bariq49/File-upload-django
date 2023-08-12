@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import *
 from .serializers import *
+from rest_framework.parsers import MultiPartParser
 
 def home(request):
     return render(request, 'index.html')
@@ -10,7 +11,7 @@ def download(request, uid):
     pass
 
 class HandleFilesUpload(APIView):
-  
+    parser_classes = [MultiPartParser]
     def post(self, request):
         try:
             data = request.data

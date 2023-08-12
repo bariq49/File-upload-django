@@ -98,7 +98,7 @@ body p {
   <input type="file" class="my-pond mt-4" name="filepond" />
 
   <div class="text-center">
-    <button class="btn btn-success">Upload File</button>
+    <button class="btn btn-success" onclick="upload_files()">Upload File</button>
   </div>
 
   <div class="carad mt-3">
@@ -133,7 +133,32 @@ body p {
       });
     });
 
-    
+    FilePond.registerPlugin(
+        FilePondPluginImagePreview,
+    );
+
+    const pond = FilePond.create(
+        document.querySelector('.my-pond')
+    );
+
+    function upload_files()
+    {
+        var files = pond.getFiles();
+        var formData = new FormData();
+        for (var i = 0; i<files.length; i++){
+            formData.append('files', files[i].file)
+        }
+
+        fetch('/handle/', {
+            method:'POST',
+            headers : {'X-CSRFToken': "{{csrf_token}}"},
+            body    : formData
+
+        }).then(res => res.json())
+        .then(result =>{
+            console.log(result)
+        })
+    }
   </script>
 
 </body>
