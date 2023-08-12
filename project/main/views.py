@@ -4,6 +4,10 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
+def home(request):
+    pass
+def download(request, uid):
+    pass
 
 class HandleFilesUpload(APIView):
   
