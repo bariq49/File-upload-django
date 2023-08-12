@@ -11,6 +11,7 @@ class FilesList_Serializer(serializers.Serializer):
     def zip_files(self, folder):
         shutil.make_archive(f'static/zip/{folder}', "zip", f"media/{folder}")
 
+
     def create(self, validated_data):
         folder = Folder.objects.create()
         files_objs = []
