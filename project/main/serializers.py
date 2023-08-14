@@ -2,6 +2,12 @@ from rest_framework import serializers
 from .models import *
 import shutil
 
+class FileSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Files
+        fields = '__all__'
+
 class FilesList_Serializer(serializers.Serializer):
     files = serializers.ListField(
         child = serializers.FileField(max_length = 10000,  allow_empty_file = False, use_url = False)

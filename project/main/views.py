@@ -7,6 +7,7 @@ from rest_framework.parsers import MultiPartParser
 
 def home(request):
     return render(request, 'index.html')
+
 def download(request, uid):
     pass
 
